@@ -1,0 +1,9 @@
+# 放在你的專案根目錄（QWEN.md），讓 Qwen Code 自動知道平台網址與如何使用智慧數字人
+
+## 智慧數字人（MCP: digital-human）
+- 開發平台網址：http://10.1.2.3:8080   （測試帳號 demo / demo123，登入設定檔名稱 dev）
+- 專案原始碼在 MCP 伺服器中的路徑：my-platform   （= 容器內 /workspace/my-platform）
+- 需要測試 UI 時：先 dh_login(profile="dev")，再 dh_run_ui_tests(url=..., goal=..., project_path="my-platform", auth_profile="dev")
+- 需要教學影片/手冊時：dh_create_tutorial(url=..., topic=..., project_path="my-platform", auth_profile="dev")，
+  拿到 job_id 後持續呼叫 dh_job_status 直到 done，然後回報影片與手冊連結。
+- 修改完某個頁面的程式碼後，主動對該頁面跑一次 dh_run_ui_tests 做回歸測試。

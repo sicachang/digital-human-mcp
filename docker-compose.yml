@@ -1,0 +1,18 @@
+# 智慧數字人 MCP — 公司內網部署
+#   docker compose up -d
+# 端點：http://<主機IP>:8000/mcp (Streamable HTTP) ・ /sse (SSE) ・ /files (成果瀏覽) ・ / (成果首頁)
+services:
+  digital-human:
+    image: digital-human-mcp:1.0.0
+    container_name: digital-human-mcp
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "${DH_PORT:-8000}:8000"
+    volumes:
+      - ./outputs:/data/outputs            # 教學影片、手冊、測試報告都在這裡
+      - ${PROJECTS_HOST_DIR:-./projects}:/workspace:ro   # 你的專案原始碼（唯讀），讓 AI 讀懂程式碼
+    shm_size: "1gb"                        # Chromium 需要較大的 /dev/shm
+    # 若平台網址用的是公司內部 DNS 名稱、容器解析不到，可在這裡補上：
+    # extra_hosts:
+    #   - "erp.mycorp.local:10.1.2.3"

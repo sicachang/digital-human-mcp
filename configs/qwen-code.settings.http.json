@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "digital-human": {
+      "httpUrl": "http://<部署主機IP>:8000/mcp",
+      "timeout": 900000,
+      "trust": true
+    }
+  }
+}

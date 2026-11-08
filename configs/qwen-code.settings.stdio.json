@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "digital-human": {
+      "command": "docker",
+      "args": [
+        "run", "-i", "--rm", "--shm-size=1g",
+        "-v", "/home/me/projects/my-platform:/workspace/my-platform:ro",
+        "-v", "/home/me/dh-outputs:/data/outputs",
+        "-e", "LLM_BASE_URL=http://172.28.26.96:9192/v1",
+        "-e", "TTS_ENGINE=piper",
+        "digital-human-mcp:1.0.0", "--transport", "stdio"
+      ],
+      "timeout": 900000,
+      "trust": true
+    }
+  }
+}
