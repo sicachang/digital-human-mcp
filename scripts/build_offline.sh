@@ -10,7 +10,7 @@ ARGS=()
 if [[ -n "${CA_CERT:-}" ]]; then ARGS+=(--secret "id=ca_cert,src=${CA_CERT}"); fi
 docker build "${ARGS[@]}" -t "$IMAGE" .
 mkdir -p dist
-echo "匯出映像檔（約 1.5GB 壓縮後），請稍候..."
+echo "匯出映像檔（壓縮後約 650MB），請稍候..."
 docker save "$IMAGE" | gzip > "dist/digital-human-mcp-${VERSION}.tar.gz"
 # 一起打包部署檔
 tar czf "dist/digital-human-deploy-${VERSION}.tar.gz" docker-compose.yml .env.example configs scripts README.md
